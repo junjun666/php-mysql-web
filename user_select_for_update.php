@@ -7,7 +7,7 @@
     $sql = "SET NAMES UTF8";
     mysqli_query($conn,$sql);
     // 查询当前编号所在行
-    $sql = "SELECT * FROM dd_book WHERE bid=$bid";
+    $sql = "SELECT * FROM user_info WHERE bid=$bid";
     $result = mysqli_query($conn,$sql);
     // var_dump($result);
     $b = mysqli_fetch_assoc($result);
@@ -41,12 +41,11 @@
     </style>
 </head>
 <body>
-    <form action="book_update.php">
+    <form action="user_update.php">
         <input type="hidden" name="bid" value="<?php echo $b['bid']?>">
-        <span>书名：</span><input type="text" name="name" value="<?php echo $b['name']?>">
-        <span>单价：</span><input type="text" name="price" value="<?php echo $b['price']?>">
-        <span>日期：</span><input type="text" name="birthday" value="<?php echo $b['birthday']?>">
-        <span>特价：</span><input type="text" name="isOnsale" value="<?php echo $b['isOnsale']?>">
+        <span>姓名：</span><input type="text" name="userName" value="<?php echo $b['userName']?>">
+        <span>密码:</span><input type="text" name="userPassword" value="<?php echo $b['userPassword']?>">
+        <span>管理员权限：</span><input type="text" name="isAdmin" value="<?php echo $b['isAdmin']?>">
         <input type="submit" value="提交">
     </form>
 </body>

@@ -31,27 +31,21 @@
 <body>
     <?php
         $bid = $_REQUEST['bid'];
-        $name = $_REQUEST['name'];
-        $price = $_REQUEST['price'];
-        $birthday = $_REQUEST['birthday'];
-        $isOnsale = $_REQUEST['isOnsale'];
-        //连接数据库
+        $bid1 = $_REQUEST['bid1'];
+        $date = date('Y-m-d');
+
         $conn = mysqli_connect('127.0.0.1','root','','dangdang',3306);
-        //var_dump($conn);
-        //提交sql命令
-        $sql = "SET NAMES UTF8";
+        $sql = 'SET NAMES UTF8';
         mysqli_query($conn,$sql);
-        $sql = "INSERT INTO dd_book VALUES('$bid','$name','$price','$birthday','$isOnsale')";
+        $sql = "UPDATE borrow SET return_date='$date' WHERE book_bid='$bid' and user_bid='$bid1'";
         $result = mysqli_query($conn,$sql);
-        
-        //查看执行结果
         if($result){
-            echo '<h1>执行成功</h1>';
-            echo '<h3>新插入的数据在数据库的编号为：'.mysqli_insert_id($conn).'</h3>'; 
-            echo "<a href='book_select_admin.php'>查看书籍列表</a>";
+            echo '<h1>恭喜你还书成功</h1>';
         }else{
-            echo '<h1>执行失败请查看SQL语句'.$sql.'</h1>';
+            echo '<h1>还书失败</h1>';
         }
+        echo '<br>';
+        echo "<a href='borrow_book.php?bid1=$bid1'>返回借书界面</a>";
     ?>
 </body>
 </html>
